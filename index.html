@@ -737,9 +737,11 @@
 
   <script>
     /*
-      IMPORTANT ICI
+      IMPORTANT
+      Remplace seulement la valeur ci-dessous par TON URL Apps Script /exec existante.
+      Aucun changement de Code.gs n'est nécessaire pour cette version.
     */
-    const API_URL = 'AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx';
+    const API_URL = 'https://script.google.com/macros/s/AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx/exec';
 
     const app = document.getElementById('app');
     const toast = document.getElementById('toast');
@@ -792,18 +794,13 @@
     }
 
     function apiUrl(week = '') {
-      const base = String(API_URL || '').trim();
-
-      if (!base || base.includes('COLLE_ICI')) {
+      if (!API_URL || API_URL.includes('COLLE_ICI')) {
         throw new Error('Renseigne d’abord API_URL avec ton URL Apps Script /exec.');
       }
-
-      const params = [];
-      if (week) params.push('week=' + encodeURIComponent(week));
-      params.push('_=' + Date.now());
-
-      const separator = base.includes('?') ? '&' : '?';
-      return base + separator + params.join('&');
+      const u = new URL(API_URL);
+      if (week) u.searchParams.set('week', week);
+      u.searchParams.set('_', Date.now().toString());
+      return u.toString();
     }
 
     async function fetchWeek(week = '') {
