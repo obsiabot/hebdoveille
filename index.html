@@ -1,53 +1,1097 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Veille IA & Formation — ObsiaFormation</title>
-<style>
-:root{--blue:#2669df;--cyan:#35c2ed;--yellow:#fffdb9;--ink:#111827;--muted:#64748b;--card:#f4f8fc;--line:#dce7f3;--orange:#ff850b;--bg:#fff}
-*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
-a{color:var(--blue)} .shell{max-width:1180px;margin:auto}.hero{background:var(--yellow);padding:28px 30px;border-top:3px solid white}.hero h1{font-size:28px;margin:0 0 8px}.hero p{margin:0;max-width:850px;line-height:1.5}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:22px;padding:24px;background:linear-gradient(90deg,var(--cyan) 0 18px,#fff 18px calc(100% - 18px),var(--cyan) calc(100% - 18px))}.sidebar{background:var(--yellow);border-radius:4px;padding:16px;height:max-content;position:sticky;top:16px}.sidebar h2{font-size:14px;margin:0 0 12px;text-transform:uppercase}.weeks button{display:block;width:100%;border:0;background:transparent;text-align:left;padding:8px 6px;border-radius:6px;cursor:pointer;color:var(--blue)}.weeks button.active{background:var(--blue);color:#fff}.content{min-width:0}.edition-head{background:var(--blue);color:white;padding:22px 26px;margin:0 0 24px}.edition-head h2{margin:0 0 5px;font-size:24px}.edition-head p{margin:0;opacity:.95}.signals{background:var(--yellow);padding:18px 20px;margin-bottom:22px}.signals h3{margin-top:0}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:7px 11px;cursor:pointer}.chip.active{background:var(--blue);color:white;border-color:var(--blue)}.section-title{font-size:20px;margin:28px 0 12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--card);border-left:4px solid var(--cyan);padding:16px;border-radius:5px}.card h4{margin:0 0 8px;font-size:17px;line-height:1.35}.meta{font-size:12px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.badge{display:inline-block;background:#101010;color:#fff400;border-radius:4px;padding:3px 6px;font-size:11px}.card p{line-height:1.5;margin:8px 0 12px}.source-link{text-decoration:none;font-weight:bold}.empty{padding:30px;text-align:center;color:var(--muted)}
-body.embed .hero{padding:18px 20px}body.embed .hero h1{font-size:21px}body.embed .layout{display:block;padding:14px;background:#fff}body.embed .sidebar{position:static;margin-bottom:14px}body.embed .weeks{display:flex;overflow:auto;gap:6px}body.embed .weeks button{width:auto;white-space:nowrap}body.embed .edition-head{padding:16px 18px}body.embed .cards{grid-template-columns:1fr}
-@media(max-width:760px){.layout{display:block;padding:14px;background:white}.sidebar{position:static;margin-bottom:14px}.weeks{display:flex;overflow:auto;gap:6px}.weeks button{width:auto;white-space:nowrap}.cards{grid-template-columns:1fr}.hero{padding:20px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+
+  <title>Veille IA & Formation — ObsiaFormation</title>
+
+  <style>
+    :root {
+      --blue: #2869df;
+      --blue-dark: #1553bd;
+      --cyan: #35c5ee;
+      --yellow: #fffdb3;
+      --yellow-strong: #fff86a;
+
+      --ink: #18202b;
+      --muted: #627086;
+      --line: #dbe4f0;
+      --surface: #ffffff;
+      --surface-alt: #f3f7fc;
+      --page: #ffffff;
+
+      --radius: 14px;
+      --radius-sm: 9px;
+
+      --shadow:
+        0 1px 2px rgba(17, 35, 61, .04),
+        0 8px 28px rgba(17, 35, 61, .07);
+
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      scrollbar-color: var(--yellow-strong) var(--blue);
+      scrollbar-width: thin;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--page);
+      color: var(--ink);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.5;
+    }
+
+    body::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: var(--blue);
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: var(--yellow-strong);
+      border-radius: 999px;
+      border: 2px solid var(--blue);
+    }
+
+    button,
+    select,
+    a {
+      font: inherit;
+    }
+
+    button,
+    select {
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    .app {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .topbar {
+      background: var(--yellow);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+    }
+
+    .topbar-inner {
+      width: min(100% - 28px, var(--max));
+      margin-inline: auto;
+      padding: 22px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
+      line-height: 1.15;
+      font-weight: 850;
+      letter-spacing: -.025em;
+    }
+
+    .brand-icon {
+      flex: 0 0 auto;
+    }
+
+    .tagline {
+      max-width: 850px;
+      margin: 8px 0 0;
+      font-size: clamp(.92rem, 1.7vw, 1.03rem);
+      color: #262626;
+    }
+
+    .main {
+      width: min(100% - 28px, var(--max));
+      margin-inline: auto;
+      padding: 20px 0 50px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .archive-panel {
+      display: grid;
+      gap: 10px;
+      padding: 13px;
+      background: var(--yellow);
+      border-radius: var(--radius);
+    }
+
+    .archive-title {
+      margin: 0;
+      font-size: .8rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+    }
+
+    .week-picker {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .icon-button,
+    .copy-button,
+    .source-button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      min-height: 40px;
+      transition:
+        transform .15s ease,
+        border-color .15s ease,
+        background .15s ease;
+    }
+
+    .icon-button {
+      width: 42px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+    }
+
+    .icon-button:hover:not(:disabled),
+    .copy-button:hover,
+    .source-button:hover {
+      border-color: var(--blue);
+      background: #f5f9ff;
+    }
+
+    .icon-button:active:not(:disabled),
+    .copy-button:active,
+    .source-button:active {
+      transform: translateY(1px);
+    }
+
+    .icon-button:disabled {
+      opacity: .35;
+      cursor: default;
+    }
+
+    .week-select {
+      width: 100%;
+      min-width: 0;
+      height: 42px;
+      border: 1px solid #bdc9da;
+      border-radius: 9px;
+      padding: 0 38px 0 12px;
+      background: #fff;
+      font-weight: 750;
+      outline: none;
+    }
+
+    .week-select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(40, 105, 223, .12);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      padding: clamp(18px, 4vw, 28px);
+      background: var(--blue);
+      color: #fff;
+      border-radius: var(--radius);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -100px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.055);
+      pointer-events: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 7px;
+      font-size: .78rem;
+      font-weight: 750;
+      opacity: .88;
+    }
+
+    .hero h2 {
+      position: relative;
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(1.45rem, 4vw, 2.2rem);
+      line-height: 1.07;
+      letter-spacing: -.03em;
+    }
+
+    .hero p {
+      position: relative;
+      max-width: 900px;
+      margin: 9px 0 0;
+      font-size: clamp(.92rem, 1.8vw, 1.05rem);
+      line-height: 1.42;
+      opacity: .96;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 14px 0 18px;
+    }
+
+    .filter {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      padding: 7px 12px;
+      font-size: .8rem;
+      font-weight: 720;
+      line-height: 1.15;
+      white-space: normal;
+      text-align: center;
+      transition:
+        background .15s,
+        color .15s,
+        border-color .15s;
+    }
+
+    .filter:hover {
+      border-color: #aac2ee;
+    }
+
+    .filter.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .signals {
+      margin: 0 0 26px;
+      padding: clamp(16px, 4vw, 24px);
+      background: var(--yellow);
+      border-radius: var(--radius);
+    }
+
+    .signals h3 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+    }
+
+    .signals-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .signals-list li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .signals-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: 0;
+      font-weight: 900;
+    }
+
+    .section {
+      margin-top: 28px;
+      min-width: 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      font-size: clamp(1.03rem, 2vw, 1.3rem);
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 310px), 1fr)
+      );
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #e4ebf4;
+      border-left: 4px solid var(--cyan);
+      border-radius: var(--radius);
+      background: var(--surface-alt);
+      box-shadow: 0 1px 0 rgba(19, 48, 85, .02);
+    }
+
+    .preview {
+      display: none;
+      position: relative;
+      aspect-ratio: 16 / 8;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #eaf3ff, #f9fbfe);
+    }
+
+    .preview.has-image {
+      display: block;
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .card-body {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      flex-direction: column;
+      padding: 14px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 820;
+      overflow-wrap: anywhere;
+    }
+
+    .item-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px 8px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: #151515;
+      color: #fff600;
+      font-size: .64rem;
+      font-weight: 850;
+      line-height: 1.15;
+    }
+
+    .summary {
+      margin: 11px 0 15px;
+      font-size: .91rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .source-button,
+    .copy-button {
+      min-height: 37px;
+      padding: 7px 11px;
+      font-size: .77rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .source-button {
+      display: inline-flex;
+      align-items: center;
+      color: var(--blue);
+      background: #fff;
+    }
+
+    .copy-button {
+      color: #3b4658;
+    }
+
+    .source-domain {
+      margin-left: auto;
+      min-width: 0;
+      max-width: 50%;
+      color: var(--muted);
+      font-size: .67rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .empty,
+    .error,
+    .loading {
+      padding: 28px 18px;
+      text-align: center;
+      border-radius: var(--radius);
+      background: var(--surface-alt);
+      color: var(--muted);
+    }
+
+    .error {
+      color: #8c2030;
+      background: #fff2f4;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 18px;
+      transform: translate(-50%, 14px);
+      max-width: calc(100vw - 28px);
+      padding: 9px 13px;
+      background: #18202b;
+      color: #fff;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity .18s,
+        transform .18s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (min-width: 760px) {
+      .topbar-inner,
+      .main {
+        width: min(100% - 48px, var(--max));
+      }
+
+      .controls {
+        grid-template-columns: minmax(0, 360px);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .topbar-inner,
+      .main {
+        width: min(100% - 20px, var(--max));
+      }
+
+      .archive-panel {
+        border-radius: 10px;
+      }
+
+      .hero {
+        border-radius: 10px;
+      }
+
+      .signals {
+        border-radius: 10px;
+      }
+
+      .card {
+        border-radius: 10px;
+      }
+
+      .source-domain {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="shell">
-<header class="hero"><h1>🤖 Veille IA & Formation</h1><p>France & francophonie — sélection académique, institutionnelle et socio-économique, relue avant publication.</p></header>
-<main class="layout">
-<aside class="sidebar"><h2>Archives</h2><div id="weeks" class="weeks"></div></aside>
-<section class="content">
-<div id="edition"></div><div id="filters" class="chips"></div><div id="signals"></div><div id="items"></div>
-</section>
-</main>
-</div>
-<script>
-const API_URL='https://script.google.com/macros/s/AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx/exec';
-const p=new URLSearchParams(location.search); if(p.get('embed')==='1')document.body.classList.add('embed');
-let data=null,currentWeek=p.get('week')||'',currentSection='Toutes';
-const $=s=>document.querySelector(s);
-function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-async function load(week=''){
- const u=API_URL+(week?'?week='+encodeURIComponent(week):'');
- const r=await fetch(u); if(!r.ok)throw new Error('Erreur flux'); data=await r.json(); currentWeek=data.selected_edition?.week||''; render();
-}
-function render(){
- const ed=data.selected_edition;
- $('#weeks').innerHTML=(data.editions||[]).map(e=>`<button class="${e.week===currentWeek?'active':''}" onclick="pick('${esc(e.week)}')">${esc(e.week)} · ${esc(e.edition_date)}</button>`).join('');
- if(!ed){$('#edition').innerHTML='<div class="empty">Aucune édition publiée.</div>';return}
- $('#edition').innerHTML=`<div class="edition-head"><h2>${esc(ed.title)}</h2><p>${esc(ed.intro||'')}</p></div>`;
- const sections=['Toutes',...new Set((data.items||[]).map(x=>x.section))];
- $('#filters').innerHTML=sections.map(s=>`<button class="chip ${s===currentSection?'active':''}" onclick='filterSection(${JSON.stringify(s)})'>${esc(s)}</button>`).join('');
- $('#signals').innerHTML=(data.signals||[]).length?`<div class="signals"><h3>À retenir</h3>${data.signals.map(s=>`<p>• ${esc(s.signal)}</p>`).join('')}</div>`:'';
- const selected=(data.items||[]).filter(x=>currentSection==='Toutes'||x.section===currentSection);
- const grouped={}; selected.forEach(x=>(grouped[x.section]??=[]).push(x));
- $('#items').innerHTML=Object.entries(grouped).map(([section,items])=>`<h3 class="section-title">${esc(section)}</h3><div class="cards">${items.map(card).join('')}</div>`).join('')||'<div class="empty">Aucun item dans ce filtre.</div>';
-}
-function card(x){return `<article class="card"><h4>${esc(x.title)}</h4><div class="meta"><span>${esc(x.item_date)}</span><span>${esc(x.source)}</span><span class="badge">${esc(x.status)}</span></div><p>${esc(x.summary)}</p><a class="source-link" href="${esc(x.url)}" target="_blank" rel="noopener">Lire la source ↗</a></article>`}
-function pick(w){currentSection='Toutes';history.replaceState(null,'','?week='+encodeURIComponent(w)+(document.body.classList.contains('embed')?'&embed=1':''));load(w)}
-function filterSection(s){currentSection=s;render()}
-load(currentWeek).catch(e=>{$('#items').innerHTML='<div class="empty">Impossible de charger la veille : '+esc(e.message)+'</div>'});
-</script>
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <h1 class="brand">
+          <span class="brand-icon" aria-hidden="true">🤖</span>
+          <span>Veille IA & Formation</span>
+        </h1>
+
+        <p class="tagline">
+          Une sélection hebdomadaire des actualités, recherches et ressources
+          sur l’IA, l’éducation, la formation et les compétences en France et
+          dans la francophonie.
+        </p>
+      </div>
+    </header>
+
+    <main class="main">
+      <div id="root" class="loading">
+        Chargement de la veille…
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx/exec";
+
+    const SECTION_ICONS = {
+      "📚 RESSOURCES": "📚",
+      "🔬 ANALYSES": "🔬",
+      "🏛️ CADRAGE INSTITUTIONNEL": "🏛️",
+      "💼 MONDE SOCIO-ÉCONOMIQUE": "💼",
+      "🗓️ ÉVÈNEMENTS": "🗓️",
+      "🗣️ TERRAIN/TÉMOIGNAGES": "🗣️",
+      "🗣️ TÉMOIGNAGES": "🗣️",
+      "🛠️ OUTILLAGES": "🛠️"
+    };
+
+    let state = {
+      editions: [],
+      items: [],
+      signals: [],
+      selectedWeek: null,
+      section: "Toutes"
+    };
+
+    const root = document.getElementById("root");
+    const toast = document.getElementById("toast");
+
+    function esc(value = "") {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function displayWeek(week) {
+      return String(week || "").replace("-W", "-S");
+    }
+
+    function weekNumber(week) {
+      const match = String(week || "").match(/W(\d+)/);
+      return match ? Number(match[1]) : "";
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value + "T12:00:00");
+      if (Number.isNaN(date.getTime())) return value;
+
+      return new Intl.DateTimeFormat("fr-FR", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }).format(date);
+    }
+
+    function hostname(url) {
+      try {
+        return new URL(url).hostname.replace(/^www\./, "");
+      } catch {
+        return "";
+      }
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(
+        () => toast.classList.remove("show"),
+        1700
+      );
+    }
+
+    async function copyLink(url) {
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast("Lien copié");
+      } catch {
+        const el = document.createElement("textarea");
+        el.value = url;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        el.remove();
+        showToast("Lien copié");
+      }
+    }
+
+    function selectedEdition() {
+      return state.editions.find(
+        e => e.week === state.selectedWeek
+      );
+    }
+
+    function selectedItems() {
+      let rows = state.items.filter(
+        item => item.week === state.selectedWeek
+      );
+
+      if (state.section !== "Toutes") {
+        rows = rows.filter(
+          item => item.section === state.section
+        );
+      }
+
+      return rows.sort(
+        (a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0)
+      );
+    }
+
+    function selectedSignals() {
+      return state.signals
+        .filter(s => s.week === state.selectedWeek)
+        .sort(
+          (a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0)
+        );
+    }
+
+    function sectionsForWeek() {
+      return [
+        ...new Set(
+          state.items
+            .filter(i => i.week === state.selectedWeek)
+            .map(i => i.section)
+        )
+      ];
+    }
+
+    function updateUrl() {
+      const url = new URL(window.location.href);
+      url.searchParams.set("week", state.selectedWeek);
+      history.replaceState({}, "", url);
+    }
+
+    function selectWeek(week) {
+      if (!week) return;
+
+      state.selectedWeek = week;
+      state.section = "Toutes";
+      updateUrl();
+      render();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function previousWeek() {
+      const index = state.editions.findIndex(
+        e => e.week === state.selectedWeek
+      );
+
+      if (index < state.editions.length - 1) {
+        selectWeek(state.editions[index + 1].week);
+      }
+    }
+
+    function nextWeek() {
+      const index = state.editions.findIndex(
+        e => e.week === state.selectedWeek
+      );
+
+      if (index > 0) {
+        selectWeek(state.editions[index - 1].week);
+      }
+    }
+
+    function renderWeekPicker() {
+      const currentIndex = state.editions.findIndex(
+        e => e.week === state.selectedWeek
+      );
+
+      return `
+        <div class="controls">
+          <section class="archive-panel" aria-label="Archives">
+            <p class="archive-title">Archives</p>
+
+            <div class="week-picker">
+              <button
+                class="icon-button"
+                type="button"
+                aria-label="Semaine précédente"
+                onclick="previousWeek()"
+                ${currentIndex >= state.editions.length - 1 ? "disabled" : ""}
+              >
+                ←
+              </button>
+
+              <select
+                class="week-select"
+                aria-label="Choisir une semaine"
+                onchange="selectWeek(this.value)"
+              >
+                ${state.editions.map(e => `
+                  <option
+                    value="${esc(e.week)}"
+                    ${e.week === state.selectedWeek ? "selected" : ""}
+                  >
+                    S${weekNumber(e.week)}
+                    · ${formatDate(e.edition_date)}
+                  </option>
+                `).join("")}
+              </select>
+
+              <button
+                class="icon-button"
+                type="button"
+                aria-label="Semaine suivante"
+                onclick="nextWeek()"
+                ${currentIndex <= 0 ? "disabled" : ""}
+              >
+                →
+              </button>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    function renderHero(edition) {
+      return `
+        <section class="hero">
+          <div class="hero-meta">
+            <span>S${weekNumber(edition.week)}</span>
+            <span>•</span>
+            <span>${esc(formatDate(edition.edition_date))}</span>
+          </div>
+
+          <h2>
+            Veille IA & formation — Semaine ${weekNumber(edition.week)}
+          </h2>
+
+          ${
+            edition.intro
+            ? `<p>${esc(edition.intro)}</p>`
+            : ""
+          }
+        </section>
+      `;
+    }
+
+    function renderFilters() {
+      const sections = sectionsForWeek();
+
+      return `
+        <nav class="filters" aria-label="Filtrer par rubrique">
+          <button
+            class="filter ${state.section === "Toutes" ? "active" : ""}"
+            onclick="setSection('Toutes')"
+          >
+            Toutes
+          </button>
+
+          ${sections.map(section => `
+            <button
+              class="filter ${state.section === section ? "active" : ""}"
+              onclick='setSection(${JSON.stringify(section)})'
+            >
+              ${esc(section)}
+            </button>
+          `).join("")}
+        </nav>
+      `;
+    }
+
+    function renderSignals(signals) {
+      if (!signals.length) return "";
+
+      return `
+        <aside class="signals">
+          <h3>À retenir</h3>
+
+          <ul class="signals-list">
+            ${signals.map(s => `
+              <li>${esc(s.signal)}</li>
+            `).join("")}
+          </ul>
+        </aside>
+      `;
+    }
+
+    function renderCard(item) {
+      const domain = hostname(item.url);
+
+      /*
+        Si plus tard l'API fournit item.image,
+        l'image OG apparaîtra automatiquement ici.
+      */
+      const preview = item.image
+        ? `
+          <div class="preview has-image">
+            <img
+              src="${esc(item.image)}"
+              alt=""
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+          </div>
+        `
+        : "";
+
+      return `
+        <article class="card">
+          ${preview}
+
+          <div class="card-body">
+            <h4 class="card-title">
+              ${esc(item.title)}
+            </h4>
+
+            <div class="item-meta">
+              ${
+                item.item_date
+                  ? `<span>${esc(formatDate(item.item_date))}</span>`
+                  : ""
+              }
+
+              ${
+                item.source
+                  ? `<span>${esc(item.source)}</span>`
+                  : ""
+              }
+
+              ${
+                item.status
+                  ? `<span class="badge">${esc(item.status)}</span>`
+                  : ""
+              }
+            </div>
+
+            <p class="summary">
+              ${esc(item.summary)}
+            </p>
+
+            <div class="card-actions">
+              <a
+                class="source-button"
+                href="${esc(item.url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Lire la source ↗
+              </a>
+
+              <button
+                class="copy-button"
+                type="button"
+                onclick='copyLink(${JSON.stringify(item.url)})'
+                aria-label="Copier le lien de cette ressource"
+              >
+                🔗 Copier
+              </button>
+
+              ${
+                domain
+                  ? `<span class="source-domain">${esc(domain)}</span>`
+                  : ""
+              }
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderSections(items) {
+      if (!items.length) {
+        return `
+          <div class="empty">
+            Aucun contenu dans cette rubrique pour cette semaine.
+          </div>
+        `;
+      }
+
+      const grouped = {};
+
+      items.forEach(item => {
+        grouped[item.section] ??= [];
+        grouped[item.section].push(item);
+      });
+
+      return Object.entries(grouped)
+        .map(([section, rows]) => `
+          <section class="section">
+            <h3 class="section-heading">
+              <span aria-hidden="true">
+                ${SECTION_ICONS[section] || ""}
+              </span>
+              <span>
+                ${esc(section.replace(/^[^\p{L}\p{N}]+/u, ""))}
+              </span>
+            </h3>
+
+            <div class="cards">
+              ${rows.map(renderCard).join("")}
+            </div>
+          </section>
+        `)
+        .join("");
+    }
+
+    function setSection(section) {
+      state.section = section;
+      render();
+
+      const filters = document.querySelector(".filters");
+      if (filters) {
+        filters.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function render() {
+      const edition = selectedEdition();
+
+      if (!edition) {
+        root.className = "empty";
+        root.textContent = "Aucune édition disponible.";
+        return;
+      }
+
+      root.className = "";
+
+      root.innerHTML = `
+        ${renderWeekPicker()}
+        ${renderHero(edition)}
+        ${renderFilters()}
+        ${renderSignals(selectedSignals())}
+        ${renderSections(selectedItems())}
+      `;
+    }
+
+    async function load() {
+      try {
+        /*
+          Supporte :
+          - un endpoint qui renvoie directement { editions, items, signals }
+          - ou un endpoint enveloppé dans { data: { ... } }
+        */
+        const response = await fetch(API_URL, {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const data = payload.data || payload;
+
+        state.editions = (data.editions || [])
+          .slice()
+          .sort((a, b) =>
+            String(b.week).localeCompare(String(a.week))
+          );
+
+        state.items = data.items || [];
+        state.signals = data.signals || [];
+
+        const requestedWeek =
+          new URL(window.location.href)
+            .searchParams
+            .get("week");
+
+        const validRequestedWeek =
+          state.editions.some(e => e.week === requestedWeek);
+
+        state.selectedWeek = validRequestedWeek
+          ? requestedWeek
+          : state.editions[0]?.week;
+
+        render();
+      } catch (error) {
+        console.error(error);
+
+        root.className = "error";
+        root.innerHTML = `
+          <strong>Impossible de charger la veille.</strong><br>
+          Vérifie l’URL Apps Script et le déploiement du Web App.
+        `;
+      }
+    }
+
+    window.selectWeek = selectWeek;
+    window.previousWeek = previousWeek;
+    window.nextWeek = nextWeek;
+    window.setSection = setSection;
+    window.copyLink = copyLink;
+
+    load();
+  </script>
 </body>
 </html>
