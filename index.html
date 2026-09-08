@@ -1,112 +1,88 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#2669DF">
+  <meta name="description" content="Veille hebdomadaire sur l’IA, l’éducation, la formation et les compétences en France et dans la francophonie.">
   <title>Veille IA & Formation — ObsiaFormation</title>
 
   <style>
     :root {
-      --blue: #2869df;
-      --blue-dark: #1553bd;
-      --cyan: #35c5ee;
-      --yellow: #fffdb3;
-      --yellow-strong: #fff86a;
-
-      --ink: #18202b;
-      --muted: #627086;
-      --line: #dbe4f0;
-      --surface: #ffffff;
-      --surface-alt: #f3f7fc;
-      --page: #ffffff;
-
-      --radius: 14px;
-      --radius-sm: 9px;
-
-      --shadow:
-        0 1px 2px rgba(17, 35, 61, .04),
-        0 8px 28px rgba(17, 35, 61, .07);
-
-      --max: 1180px;
+      --blue: #2669DF;
+      --blue-dark: #1558C5;
+      --blue-soft: #EDF4FF;
+      --cyan: #35C2ED;
+      --yellow: #FFFDB9;
+      --yellow-strong: #FFF25A;
+      --ink: #142033;
+      --muted: #627087;
+      --line: #DCE6F2;
+      --surface: #FFFFFF;
+      --surface-soft: #F4F8FC;
+      --surface-hover: #EEF5FF;
+      --shadow: 0 1px 2px rgba(16, 39, 78, .04), 0 12px 34px rgba(16, 39, 78, .08);
+      --shadow-pop: 0 18px 60px rgba(20, 40, 80, .20);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max: 1240px;
+      --page-pad: clamp(12px, 3vw, 30px);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth;
       overflow-x: hidden;
-      scrollbar-color: var(--yellow-strong) var(--blue);
+      scroll-behavior: smooth;
       scrollbar-width: thin;
+      scrollbar-color: var(--yellow-strong) var(--blue);
+      background: var(--surface);
+    }
+
+    html::-webkit-scrollbar { width: 10px; }
+    html::-webkit-scrollbar-track { background: var(--blue); }
+    html::-webkit-scrollbar-thumb {
+      background: var(--yellow-strong);
+      border: 2px solid var(--blue);
+      border-radius: 999px;
     }
 
     body {
       margin: 0;
       min-width: 0;
       overflow-x: hidden;
-      background: var(--page);
+      background: var(--surface);
       color: var(--ink);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body::-webkit-scrollbar {
-      width: 10px;
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    :focus-visible {
+      outline: 3px solid rgba(38, 105, 223, .30);
+      outline-offset: 2px;
     }
 
-    body::-webkit-scrollbar-track {
-      background: var(--blue);
-    }
-
-    body::-webkit-scrollbar-thumb {
-      background: var(--yellow-strong);
-      border-radius: 999px;
-      border: 2px solid var(--blue);
-    }
-
-    button,
-    select,
-    a {
-      font: inherit;
-    }
-
-    button,
-    select {
-      color: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: var(--blue);
-    }
-
-    .app {
-      width: 100%;
+    .shell {
+      width: min(calc(100% - 2 * var(--page-pad)), var(--max));
+      margin-inline: auto;
       min-width: 0;
     }
 
-    .topbar {
+    .masthead {
       background: var(--yellow);
-      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      border-bottom: 1px solid rgba(20, 32, 51, .06);
     }
 
-    .topbar-inner {
-      width: min(100% - 28px, var(--max));
-      margin-inline: auto;
-      padding: 22px 0;
+    .masthead__inner {
+      padding: clamp(18px, 3.2vw, 31px) 0;
     }
 
     .brand {
@@ -114,212 +90,333 @@
       align-items: center;
       gap: 10px;
       margin: 0;
-      font-size: clamp(1.35rem, 2.7vw, 2rem);
-      line-height: 1.15;
-      font-weight: 850;
-      letter-spacing: -.025em;
+      font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2.35rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -.035em;
     }
 
-    .brand-icon {
-      flex: 0 0 auto;
-    }
+    .brand__icon { font-size: .92em; }
 
     .tagline {
-      max-width: 850px;
-      margin: 8px 0 0;
-      font-size: clamp(.92rem, 1.7vw, 1.03rem);
-      color: #262626;
+      max-width: 930px;
+      margin: 9px 0 0;
+      color: #2A2F3A;
+      font-size: clamp(.9rem, .85rem + .22vw, 1.04rem);
     }
 
     .main {
-      width: min(100% - 28px, var(--max));
-      margin-inline: auto;
-      padding: 20px 0 50px;
+      padding: clamp(16px, 2.5vw, 26px) 0 56px;
     }
 
-    .controls {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .archive-panel {
-      display: grid;
-      gap: 10px;
-      padding: 13px;
-      background: var(--yellow);
-      border-radius: var(--radius);
-    }
-
-    .archive-title {
-      margin: 0;
-      font-size: .8rem;
-      font-weight: 850;
-      text-transform: uppercase;
-      letter-spacing: .055em;
-    }
-
-    .week-picker {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 8px;
+    /* Archive navigation */
+    .archive-bar {
+      position: relative;
+      z-index: 20;
+      display: flex;
       align-items: center;
+      gap: 8px;
+      width: min(100%, 520px);
+      margin: 0 0 16px;
+      padding: 10px;
+      border-radius: 15px;
+      background: var(--yellow);
     }
 
-    .icon-button,
-    .copy-button,
-    .source-button {
+    .round-btn,
+    .archive-trigger,
+    .utility-btn,
+    .chip {
       border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 999px;
-      min-height: 40px;
-      transition:
-        transform .15s ease,
-        border-color .15s ease,
-        background .15s ease;
+      background: var(--surface);
+      color: var(--ink);
+      transition: background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease, box-shadow .16s ease;
     }
 
-    .icon-button {
+    .round-btn {
+      flex: 0 0 42px;
       width: 42px;
+      height: 42px;
       padding: 0;
       display: grid;
       place-items: center;
-      font-size: 1.05rem;
+      border-radius: 999px;
+      font-size: 1.08rem;
+      font-weight: 900;
     }
 
-    .icon-button:hover:not(:disabled),
-    .copy-button:hover,
-    .source-button:hover {
-      border-color: var(--blue);
-      background: #f5f9ff;
+    .round-btn:hover:not(:disabled),
+    .archive-trigger:hover,
+    .utility-btn:hover {
+      background: var(--blue-soft);
+      border-color: #B5CAF1;
     }
 
-    .icon-button:active:not(:disabled),
-    .copy-button:active,
-    .source-button:active {
+    .round-btn:active:not(:disabled),
+    .archive-trigger:active,
+    .utility-btn:active {
       transform: translateY(1px);
     }
 
-    .icon-button:disabled {
-      opacity: .35;
+    .round-btn:disabled {
+      opacity: .32;
       cursor: default;
     }
 
-    .week-select {
+    .archive-trigger {
+      min-width: 0;
+      flex: 1 1 auto;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 850;
+      text-align: left;
+    }
+
+    .archive-trigger__label {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .archive-trigger__chevron {
+      flex: 0 0 auto;
+      transition: transform .18s ease;
+    }
+
+    .archive-bar.is-open .archive-trigger__chevron {
+      transform: rotate(180deg);
+    }
+
+    .archive-popover {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 52px;
+      width: min(420px, calc(100vw - 2 * var(--page-pad)));
+      max-width: calc(100vw - 2 * var(--page-pad));
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: var(--shadow-pop);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-5px) scale(.99);
+      transform-origin: top left;
+      transition: opacity .16s ease, transform .16s ease, visibility .16s;
+    }
+
+    .archive-bar.is-open .archive-popover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .archive-popover__head {
+      padding: 14px 15px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .archive-popover__title {
+      margin: 0;
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .archive-popover__hint {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    .archive-list {
+      max-height: min(420px, 55vh);
+      padding: 8px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--yellow-strong) var(--blue);
+    }
+
+    .archive-list::-webkit-scrollbar { width: 8px; }
+    .archive-list::-webkit-scrollbar-track {
+      background: var(--blue);
+      border-radius: 999px;
+    }
+    .archive-list::-webkit-scrollbar-thumb {
+      background: var(--yellow-strong);
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+    }
+
+    .archive-option {
       width: 100%;
       min-width: 0;
-      height: 42px;
-      border: 1px solid #bdc9da;
-      border-radius: 9px;
-      padding: 0 38px 0 12px;
-      background: #fff;
-      font-weight: 750;
-      outline: none;
+      border: 0;
+      border-radius: 11px;
+      background: transparent;
+      padding: 10px 11px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      text-align: left;
     }
 
-    .week-select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(40, 105, 223, .12);
+    .archive-option:hover {
+      background: var(--surface-hover);
     }
 
+    .archive-option.is-current {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .archive-option__week {
+      min-width: 42px;
+      font-weight: 900;
+    }
+
+    .archive-option__date {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .archive-option.is-current .archive-option__date {
+      color: rgba(255,255,255,.82);
+    }
+
+    .archive-option__check {
+      font-weight: 900;
+      opacity: 0;
+    }
+
+    .archive-option.is-current .archive-option__check {
+      opacity: 1;
+    }
+
+    /* Hero */
     .hero {
       position: relative;
       overflow: hidden;
-      margin-bottom: 18px;
-      padding: clamp(18px, 4vw, 28px);
-      background: var(--blue);
-      color: #fff;
+      padding: clamp(20px, 4vw, 34px);
       border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--blue), #2E70E2 58%, #245ECC);
+      color: #fff;
+      box-shadow: var(--shadow);
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      right: -80px;
-      top: -100px;
-      width: 240px;
-      height: 240px;
+      width: 320px;
+      height: 320px;
+      right: -125px;
+      top: -150px;
       border-radius: 50%;
-      background: rgba(255,255,255,.055);
+      background: rgba(255,255,255,.065);
       pointer-events: none;
     }
 
-    .hero-meta {
+    .hero__eyebrow {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 7px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       font-size: .78rem;
-      font-weight: 750;
-      opacity: .88;
+      font-weight: 850;
+      opacity: .90;
     }
 
     .hero h2 {
       position: relative;
+      max-width: 1000px;
       margin: 0;
-      max-width: 900px;
-      font-size: clamp(1.45rem, 4vw, 2.2rem);
+      font-size: clamp(1.6rem, 1.15rem + 1.8vw, 2.55rem);
       line-height: 1.07;
-      letter-spacing: -.03em;
+      letter-spacing: -.035em;
     }
 
-    .hero p {
+    .hero__intro {
       position: relative;
-      max-width: 900px;
-      margin: 9px 0 0;
-      font-size: clamp(.92rem, 1.8vw, 1.05rem);
-      line-height: 1.42;
+      max-width: 960px;
+      margin: 10px 0 0;
+      font-size: clamp(.92rem, .88rem + .2vw, 1.07rem);
+      line-height: 1.45;
       opacity: .96;
     }
 
+    .edition-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+
+    .utility-btn {
+      min-height: 39px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    /* Filters */
     .filters {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin: 14px 0 18px;
+      margin: 16px 0 18px;
     }
 
-    .filter {
+    .chip {
       min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #fff;
       padding: 7px 12px;
-      font-size: .8rem;
-      font-weight: 720;
-      line-height: 1.15;
-      white-space: normal;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 760;
+      line-height: 1.2;
       text-align: center;
-      transition:
-        background .15s,
-        color .15s,
-        border-color .15s;
+      white-space: normal;
     }
 
-    .filter:hover {
-      border-color: #aac2ee;
-    }
+    .chip:hover { border-color: #B5CAF1; background: var(--blue-soft); }
 
-    .filter.active {
+    .chip.is-active {
       border-color: var(--blue);
       background: var(--blue);
       color: #fff;
     }
 
+    /* Signals */
     .signals {
-      margin: 0 0 26px;
-      padding: clamp(16px, 4vw, 24px);
-      background: var(--yellow);
+      margin: 0 0 27px;
+      padding: clamp(16px, 3.5vw, 24px);
       border-radius: var(--radius);
+      background: var(--yellow);
     }
 
     .signals h3 {
-      margin: 0 0 12px;
+      margin: 0 0 11px;
       font-size: 1.05rem;
     }
 
-    .signals-list {
+    .signals ul {
       display: grid;
       gap: 9px;
       margin: 0;
@@ -327,12 +424,12 @@
       list-style: none;
     }
 
-    .signals-list li {
+    .signals li {
       position: relative;
       padding-left: 18px;
     }
 
-    .signals-list li::before {
+    .signals li::before {
       content: "•";
       position: absolute;
       left: 2px;
@@ -340,83 +437,112 @@
       font-weight: 900;
     }
 
+    /* Content */
     .section {
-      margin-top: 28px;
       min-width: 0;
+      margin-top: 30px;
     }
 
-    .section-heading {
+    .section-title {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       margin: 0 0 12px;
-      font-size: clamp(1.03rem, 2vw, 1.3rem);
+      font-size: clamp(1.05rem, .98rem + .35vw, 1.34rem);
       line-height: 1.25;
-      letter-spacing: -.01em;
+      letter-spacing: -.015em;
     }
 
     .cards {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 310px), 1fr)
-      );
-      gap: 12px;
       min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+      gap: 13px;
     }
 
     .card {
-      display: flex;
-      flex-direction: column;
       min-width: 0;
       overflow: hidden;
-      border: 1px solid #e4ebf4;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #E2EAF3;
       border-left: 4px solid var(--cyan);
       border-radius: var(--radius);
-      background: var(--surface-alt);
-      box-shadow: 0 1px 0 rgba(19, 48, 85, .02);
+      background: var(--surface-soft);
+      box-shadow: 0 1px 0 rgba(17, 38, 74, .025);
     }
 
-    .preview {
-      display: none;
+    .card-preview {
       position: relative;
-      aspect-ratio: 16 / 8;
+      display: none;
+      aspect-ratio: 16 / 8.7;
       overflow: hidden;
-      background:
-        linear-gradient(135deg, #eaf3ff, #f9fbfe);
+      background: linear-gradient(135deg, #EAF3FF, #F6FAFE);
+      border-bottom: 1px solid #E1EAF4;
     }
 
-    .preview.has-image {
-      display: block;
-    }
+    .card-preview.is-visible { display: block; }
 
-    .preview img {
+    .card-preview img {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity .22s ease;
     }
+
+    .card-preview img.is-loaded { opacity: 1; }
 
     .card-body {
-      display: flex;
-      flex: 1;
       min-width: 0;
+      flex: 1;
+      display: flex;
       flex-direction: column;
-      padding: 14px;
+      padding: 15px;
     }
 
-    .card-title {
+    .source-row {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 700;
+    }
+
+    .source-logo {
+      display: none;
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      object-fit: contain;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .source-logo.is-visible { display: block; }
+
+    .source-name {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .card h4 {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.35;
-      font-weight: 820;
+      font-size: 1.02rem;
+      line-height: 1.34;
+      font-weight: 850;
       overflow-wrap: anywhere;
     }
 
-    .item-meta {
+    .meta {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
       gap: 5px 8px;
       margin-top: 8px;
       color: var(--muted);
@@ -429,669 +555,723 @@
       min-height: 20px;
       padding: 2px 7px;
       border-radius: 5px;
-      background: #151515;
-      color: #fff600;
+      background: #111;
+      color: #FFF200;
       font-size: .64rem;
-      font-weight: 850;
+      font-weight: 900;
       line-height: 1.15;
     }
 
     .summary {
-      margin: 11px 0 15px;
+      margin: 11px 0 16px;
       font-size: .91rem;
-      line-height: 1.5;
+      line-height: 1.52;
       overflow-wrap: anywhere;
     }
 
     .card-actions {
+      min-width: 0;
+      margin-top: auto;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 7px;
-      margin-top: auto;
-      flex-wrap: wrap;
     }
 
-    .source-button,
-    .copy-button {
+    .source-link,
+    .copy-btn {
       min-height: 37px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
       padding: 7px 11px;
-      font-size: .77rem;
-      font-weight: 800;
+      font-size: .76rem;
+      font-weight: 850;
       text-decoration: none;
+      transition: background .16s ease, border-color .16s ease, transform .16s ease;
     }
 
-    .source-button {
+    .source-link {
       display: inline-flex;
       align-items: center;
       color: var(--blue);
-      background: #fff;
     }
 
-    .copy-button {
-      color: #3b4658;
+    .copy-btn { color: #3E4B60; }
+
+    .source-link:hover,
+    .copy-btn:hover {
+      border-color: #B5CAF1;
+      background: var(--blue-soft);
     }
 
-    .source-domain {
-      margin-left: auto;
+    .source-link:active,
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+
+    .domain {
       min-width: 0;
-      max-width: 50%;
+      max-width: 46%;
+      margin-left: auto;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       color: var(--muted);
       font-size: .67rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
+    .loading,
     .empty,
-    .error,
-    .loading {
-      padding: 28px 18px;
-      text-align: center;
+    .error {
+      padding: 30px 18px;
       border-radius: var(--radius);
-      background: var(--surface-alt);
+      background: var(--surface-soft);
       color: var(--muted);
+      text-align: center;
     }
 
     .error {
-      color: #8c2030;
-      background: #fff2f4;
+      background: #FFF1F4;
+      color: #8D2941;
     }
 
     .toast {
       position: fixed;
-      z-index: 9999;
+      z-index: 1000;
       left: 50%;
-      bottom: 18px;
-      transform: translate(-50%, 14px);
-      max-width: calc(100vw - 28px);
+      bottom: max(18px, env(safe-area-inset-bottom));
+      max-width: calc(100vw - 24px);
       padding: 9px 13px;
-      background: #18202b;
-      color: #fff;
       border-radius: 999px;
+      background: #172033;
+      color: #fff;
       font-size: .78rem;
-      font-weight: 700;
+      font-weight: 800;
+      box-shadow: var(--shadow);
       opacity: 0;
       pointer-events: none;
-      transition:
-        opacity .18s,
-        transform .18s;
+      transform: translate(-50%, 12px);
+      transition: opacity .18s ease, transform .18s ease;
     }
 
-    .toast.show {
+    .toast.is-visible {
       opacity: 1;
       transform: translate(-50%, 0);
     }
 
-    @media (min-width: 760px) {
-      .topbar-inner,
-      .main {
-        width: min(100% - 48px, var(--max));
+    .archive-backdrop { display: none; }
+
+    /* Narrow screens: archive popover becomes a bottom sheet */
+    @media (max-width: 620px) {
+      .archive-bar { width: 100%; }
+
+      .archive-popover {
+        position: fixed;
+        z-index: 102;
+        left: 10px;
+        right: 10px;
+        bottom: max(10px, env(safe-area-inset-bottom));
+        top: auto;
+        width: auto;
+        max-width: none;
+        max-height: min(72vh, 580px);
+        transform-origin: bottom center;
+        transform: translateY(16px) scale(.99);
       }
 
-      .controls {
-        grid-template-columns: minmax(0, 360px);
+      .archive-bar.is-open .archive-popover {
+        transform: translateY(0) scale(1);
       }
+
+      .archive-list {
+        max-height: min(55vh, 430px);
+      }
+
+      .archive-backdrop {
+        position: fixed;
+        z-index: 101;
+        inset: 0;
+        background: rgba(16, 30, 54, .32);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+      }
+
+      .archive-bar.is-open .archive-backdrop { display: block; }
+
+      .domain { display: none; }
     }
 
-    @media (max-width: 420px) {
-      .topbar-inner,
-      .main {
-        width: min(100% - 20px, var(--max));
-      }
-
-      .archive-panel {
-        border-radius: 10px;
-      }
-
-      .hero {
-        border-radius: 10px;
-      }
-
-      .signals {
-        border-radius: 10px;
-      }
-
-      .card {
-        border-radius: 10px;
-      }
-
-      .source-domain {
-        display: none;
-      }
+    @media (max-width: 410px) {
+      :root { --page-pad: 10px; }
+      .round-btn { flex-basis: 40px; width: 40px; height: 40px; }
+      .archive-trigger { height: 40px; }
+      .card, .hero, .signals { border-radius: 12px; }
+      .card-body { padding: 13px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <h1 class="brand">
-          <span class="brand-icon" aria-hidden="true">🤖</span>
-          <span>Veille IA & Formation</span>
-        </h1>
+  <header class="masthead">
+    <div class="shell masthead__inner">
+      <h1 class="brand"><span class="brand__icon" aria-hidden="true">🤖</span><span>Veille IA & Formation</span></h1>
+      <p class="tagline">Une sélection hebdomadaire des actualités, recherches et ressources sur l’IA, l’éducation, la formation et les compétences en France et dans la francophonie.</p>
+    </div>
+  </header>
 
-        <p class="tagline">
-          Une sélection hebdomadaire des actualités, recherches et ressources
-          sur l’IA, l’éducation, la formation et les compétences en France et
-          dans la francophonie.
-        </p>
-      </div>
-    </header>
-
-    <main class="main">
-      <div id="root" class="loading">
-        Chargement de la veille…
-      </div>
-    </main>
-  </div>
+  <main class="shell main">
+    <div id="app" class="loading" aria-live="polite">Chargement de la veille…</div>
+  </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx/exec";
+    /*
+      IMPORTANT
+      Remplace seulement la valeur ci-dessous par TON URL Apps Script /exec existante.
+      Aucun changement de Code.gs n'est nécessaire pour cette version.
+    */
+    const API_URL = 'COLLE_ICI_TON_URL_APPS_SCRIPT_EXEC';
 
-    const SECTION_ICONS = {
-      "📚 RESSOURCES": "📚",
-      "🔬 ANALYSES": "🔬",
-      "🏛️ CADRAGE INSTITUTIONNEL": "🏛️",
-      "💼 MONDE SOCIO-ÉCONOMIQUE": "💼",
-      "🗓️ ÉVÈNEMENTS": "🗓️",
-      "🗣️ TERRAIN/TÉMOIGNAGES": "🗣️",
-      "🗣️ TÉMOIGNAGES": "🗣️",
-      "🛠️ OUTILLAGES": "🛠️"
-    };
+    const app = document.getElementById('app');
+    const toast = document.getElementById('toast');
 
     let state = {
       editions: [],
+      edition: null,
       items: [],
       signals: [],
-      selectedWeek: null,
-      section: "Toutes"
+      currentWeek: '',
+      currentSection: 'Toutes',
+      loading: false
     };
 
-    const root = document.getElementById("root");
-    const toast = document.getElementById("toast");
+    const params = new URLSearchParams(location.search);
+    const requestedWeek = params.get('week') || '';
 
-    function esc(value = "") {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function esc(value = '') {
+      return String(value).replace(/[&<>"']/g, ch => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[ch]));
     }
 
-    function displayWeek(week) {
-      return String(week || "").replace("-W", "-S");
+    function displayWeek(week = '') {
+      return String(week).replace('-W', '-S');
     }
 
-    function weekNumber(week) {
-      const match = String(week || "").match(/W(\d+)/);
-      return match ? Number(match[1]) : "";
+    function weekNumber(week = '') {
+      const m = String(week).match(/W(\d+)/);
+      return m ? Number(m[1]) : '';
     }
 
-    function formatDate(value) {
-      if (!value) return "";
-      const date = new Date(value + "T12:00:00");
-      if (Number.isNaN(date.getTime())) return value;
-
-      return new Intl.DateTimeFormat("fr-FR", {
-        day: "numeric",
-        month: "short",
-        year: "numeric"
-      }).format(date);
+    function formatDate(value, short = false) {
+      if (!value) return '';
+      const d = new Date(String(value).slice(0, 10) + 'T12:00:00');
+      if (Number.isNaN(d.getTime())) return String(value);
+      return new Intl.DateTimeFormat('fr-FR', short
+        ? { day: 'numeric', month: 'short', year: 'numeric' }
+        : { day: 'numeric', month: 'long', year: 'numeric' }
+      ).format(d);
     }
 
     function hostname(url) {
-      try {
-        return new URL(url).hostname.replace(/^www\./, "");
-      } catch {
-        return "";
+      try { return new URL(url).hostname.replace(/^www\./, ''); }
+      catch { return ''; }
+    }
+
+    function apiUrl(week = '') {
+      if (!API_URL || API_URL.includes('https://script.google.com/macros/s/AKfycby3LBnwjaRp2xfBrV3S-MGjN_zqk2BZGS6LtivNMvXPDqVeDHvcJBWAw1D1NWFws7Kx/exec')) {
+        throw new Error('Renseigne d’abord API_URL avec ton URL Apps Script /exec.');
       }
+      const u = new URL(API_URL);
+      if (week) u.searchParams.set('week', week);
+      u.searchParams.set('_', Date.now().toString());
+      return u.toString();
+    }
+
+    async function fetchWeek(week = '') {
+      const response = await fetch(apiUrl(week), { cache: 'no-store' });
+      if (!response.ok) throw new Error('Le flux de veille ne répond pas correctement.');
+      const payload = await response.json();
+      return payload?.data || payload;
+    }
+
+    function normalizePayload(data) {
+      const editions = Array.isArray(data?.editions) ? data.editions.slice() : [];
+      editions.sort((a, b) => String(b.edition_date || b.week).localeCompare(String(a.edition_date || a.week)));
+
+      const edition = data?.selected_edition || data?.edition || null;
+      const items = Array.isArray(data?.items) ? data.items : [];
+      const signals = Array.isArray(data?.signals) ? data.signals : [];
+
+      return { editions, edition, items, signals };
+    }
+
+    async function loadWeek(week = '', { updateUrl = false, scroll = false } = {}) {
+      if (state.loading) return;
+      state.loading = true;
+
+      try {
+        const data = normalizePayload(await fetchWeek(week));
+
+        state.editions = data.editions;
+        state.edition = data.edition;
+        state.items = data.items;
+        state.signals = data.signals;
+        state.currentWeek = data.edition?.week || '';
+        state.currentSection = 'Toutes';
+
+        if (updateUrl && state.currentWeek) {
+          const u = new URL(location.href);
+          u.searchParams.set('week', state.currentWeek);
+          history.replaceState({}, '', u);
+        }
+
+        render();
+
+        if (scroll) {
+          const hero = document.querySelector('.hero');
+          hero?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } catch (err) {
+        console.error(err);
+        app.className = 'error';
+        app.innerHTML = '<strong>Impossible de charger la veille.</strong><br>' + esc(err.message);
+      } finally {
+        state.loading = false;
+      }
+    }
+
+    function currentEditionIndex() {
+      return state.editions.findIndex(e => e.week === state.currentWeek);
+    }
+
+    async function goOlder() {
+      const i = currentEditionIndex();
+      if (i >= 0 && i < state.editions.length - 1) {
+        await chooseWeek(state.editions[i + 1].week);
+      }
+    }
+
+    async function goNewer() {
+      const i = currentEditionIndex();
+      if (i > 0) {
+        await chooseWeek(state.editions[i - 1].week);
+      }
+    }
+
+    async function chooseWeek(week) {
+      closeArchives();
+      await loadWeek(week, { updateUrl: true, scroll: true });
+    }
+
+    function toggleArchives() {
+      const bar = document.querySelector('.archive-bar');
+      if (!bar) return;
+      const opening = !bar.classList.contains('is-open');
+      bar.classList.toggle('is-open', opening);
+      document.querySelector('.archive-trigger')?.setAttribute('aria-expanded', String(opening));
+
+      if (opening) {
+        requestAnimationFrame(() => {
+          document.querySelector('.archive-option.is-current')?.focus();
+        });
+      }
+    }
+
+    function closeArchives() {
+      const bar = document.querySelector('.archive-bar');
+      if (!bar) return;
+      bar.classList.remove('is-open');
+      document.querySelector('.archive-trigger')?.setAttribute('aria-expanded', 'false');
+    }
+
+    function setSection(section) {
+      state.currentSection = section;
+      renderContentOnly();
+    }
+
+    function getSections() {
+      return [...new Set(state.items.map(i => i.section).filter(Boolean))];
+    }
+
+    function filteredItems() {
+      return state.items.filter(i => state.currentSection === 'Toutes' || i.section === state.currentSection);
     }
 
     function showToast(message) {
       toast.textContent = message;
-      toast.classList.add("show");
+      toast.classList.add('is-visible');
       clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(
-        () => toast.classList.remove("show"),
-        1700
-      );
+      showToast.timer = setTimeout(() => toast.classList.remove('is-visible'), 1700);
     }
 
-    async function copyLink(url) {
+    async function copyText(text, message = 'Lien copié') {
       try {
-        await navigator.clipboard.writeText(url);
-        showToast("Lien copié");
+        await navigator.clipboard.writeText(text);
       } catch {
-        const el = document.createElement("textarea");
-        el.value = url;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand("copy");
-        el.remove();
-        showToast("Lien copié");
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
       }
+      showToast(message);
     }
 
-    function selectedEdition() {
-      return state.editions.find(
-        e => e.week === state.selectedWeek
-      );
+    function shareEditionUrl() {
+      const u = new URL(location.href);
+      u.searchParams.set('week', state.currentWeek);
+      u.searchParams.delete('embed');
+      return u.toString();
     }
 
-    function selectedItems() {
-      let rows = state.items.filter(
-        item => item.week === state.selectedWeek
-      );
+    function renderArchiveBar() {
+      const i = currentEditionIndex();
+      const current = state.edition;
+      const disabledNewer = i <= 0;
+      const disabledOlder = i < 0 || i >= state.editions.length - 1;
 
-      if (state.section !== "Toutes") {
-        rows = rows.filter(
-          item => item.section === state.section
-        );
-      }
-
-      return rows.sort(
-        (a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0)
-      );
-    }
-
-    function selectedSignals() {
-      return state.signals
-        .filter(s => s.week === state.selectedWeek)
-        .sort(
-          (a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0)
-        );
-    }
-
-    function sectionsForWeek() {
-      return [
-        ...new Set(
-          state.items
-            .filter(i => i.week === state.selectedWeek)
-            .map(i => i.section)
-        )
-      ];
-    }
-
-    function updateUrl() {
-      const url = new URL(window.location.href);
-      url.searchParams.set("week", state.selectedWeek);
-      history.replaceState({}, "", url);
-    }
-
-    function selectWeek(week) {
-      if (!week) return;
-
-      state.selectedWeek = week;
-      state.section = "Toutes";
-      updateUrl();
-      render();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function previousWeek() {
-      const index = state.editions.findIndex(
-        e => e.week === state.selectedWeek
-      );
-
-      if (index < state.editions.length - 1) {
-        selectWeek(state.editions[index + 1].week);
-      }
-    }
-
-    function nextWeek() {
-      const index = state.editions.findIndex(
-        e => e.week === state.selectedWeek
-      );
-
-      if (index > 0) {
-        selectWeek(state.editions[index - 1].week);
-      }
-    }
-
-    function renderWeekPicker() {
-      const currentIndex = state.editions.findIndex(
-        e => e.week === state.selectedWeek
-      );
+      const options = state.editions.map(e => {
+        const active = e.week === state.currentWeek;
+        return `
+          <button class="archive-option ${active ? 'is-current' : ''}"
+                  type="button"
+                  role="option"
+                  aria-selected="${active}"
+                  onclick="chooseWeek('${esc(e.week)}')">
+            <span class="archive-option__week">S${weekNumber(e.week)}</span>
+            <span class="archive-option__date">${esc(formatDate(e.edition_date))}</span>
+            <span class="archive-option__check" aria-hidden="true">✓</span>
+          </button>`;
+      }).join('');
 
       return `
-        <div class="controls">
-          <section class="archive-panel" aria-label="Archives">
-            <p class="archive-title">Archives</p>
+        <div class="archive-bar">
+          <button class="round-btn" type="button" onclick="goOlder()" ${disabledOlder ? 'disabled' : ''}
+                  aria-label="Afficher l’édition plus ancienne" title="Édition plus ancienne">←</button>
 
-            <div class="week-picker">
-              <button
-                class="icon-button"
-                type="button"
-                aria-label="Semaine précédente"
-                onclick="previousWeek()"
-                ${currentIndex >= state.editions.length - 1 ? "disabled" : ""}
-              >
-                ←
-              </button>
+          <button class="archive-trigger" type="button" onclick="toggleArchives()"
+                  aria-haspopup="listbox" aria-expanded="false">
+            <span class="archive-trigger__label">S${weekNumber(current?.week)} · ${esc(formatDate(current?.edition_date))}</span>
+            <span class="archive-trigger__chevron" aria-hidden="true">⌄</span>
+          </button>
 
-              <select
-                class="week-select"
-                aria-label="Choisir une semaine"
-                onchange="selectWeek(this.value)"
-              >
-                ${state.editions.map(e => `
-                  <option
-                    value="${esc(e.week)}"
-                    ${e.week === state.selectedWeek ? "selected" : ""}
-                  >
-                    S${weekNumber(e.week)}
-                    · ${formatDate(e.edition_date)}
-                  </option>
-                `).join("")}
-              </select>
+          <button class="round-btn" type="button" onclick="goNewer()" ${disabledNewer ? 'disabled' : ''}
+                  aria-label="Afficher l’édition plus récente" title="Édition plus récente">→</button>
 
-              <button
-                class="icon-button"
-                type="button"
-                aria-label="Semaine suivante"
-                onclick="nextWeek()"
-                ${currentIndex <= 0 ? "disabled" : ""}
-              >
-                →
-              </button>
+          <div class="archive-backdrop" onclick="closeArchives()" aria-hidden="true"></div>
+
+          <div class="archive-popover" role="listbox" aria-label="Archives de la veille">
+            <div class="archive-popover__head">
+              <p class="archive-popover__title">Archives</p>
+              <p class="archive-popover__hint">${state.editions.length} édition${state.editions.length > 1 ? 's' : ''} publiée${state.editions.length > 1 ? 's' : ''}</p>
             </div>
-          </section>
-        </div>
-      `;
+            <div class="archive-list">${options}</div>
+          </div>
+        </div>`;
     }
 
-    function renderHero(edition) {
+    function renderHero() {
+      const ed = state.edition;
       return `
         <section class="hero">
-          <div class="hero-meta">
-            <span>S${weekNumber(edition.week)}</span>
-            <span>•</span>
-            <span>${esc(formatDate(edition.edition_date))}</span>
+          <div class="hero__eyebrow">
+            <span>S${weekNumber(ed.week)}</span><span>•</span><span>${esc(formatDate(ed.edition_date))}</span>
           </div>
-
-          <h2>
-            Veille IA & formation — Semaine ${weekNumber(edition.week)}
-          </h2>
-
-          ${
-            edition.intro
-            ? `<p>${esc(edition.intro)}</p>`
-            : ""
-          }
+          <h2>Veille IA & formation — Semaine ${weekNumber(ed.week)}</h2>
+          ${ed.intro ? `<p class="hero__intro">${esc(ed.intro)}</p>` : ''}
         </section>
-      `;
+
+        <div class="edition-actions">
+          <button class="utility-btn" type="button" onclick="copyText(shareEditionUrl(), 'Lien de l’édition copié')">🔗 Partager cette édition</button>
+        </div>`;
     }
 
     function renderFilters() {
-      const sections = sectionsForWeek();
+      const sections = getSections();
+      if (!sections.length) return '';
+      const all = ['Toutes', ...sections];
 
       return `
-        <nav class="filters" aria-label="Filtrer par rubrique">
-          <button
-            class="filter ${state.section === "Toutes" ? "active" : ""}"
-            onclick="setSection('Toutes')"
-          >
-            Toutes
-          </button>
-
-          ${sections.map(section => `
-            <button
-              class="filter ${state.section === section ? "active" : ""}"
-              onclick='setSection(${JSON.stringify(section)})'
-            >
+        <nav class="filters" aria-label="Filtrer la veille par rubrique">
+          ${all.map(section => `
+            <button class="chip ${state.currentSection === section ? 'is-active' : ''}"
+                    type="button"
+                    aria-pressed="${state.currentSection === section}"
+                    onclick='setSection(${JSON.stringify(section)})'>
               ${esc(section)}
             </button>
-          `).join("")}
-        </nav>
-      `;
+          `).join('')}
+        </nav>`;
     }
 
-    function renderSignals(signals) {
-      if (!signals.length) return "";
-
+    function renderSignals() {
+      if (!state.signals.length) return '';
+      const signals = state.signals.slice().sort((a,b) => Number(a.sort_order || 999) - Number(b.sort_order || 999));
       return `
         <aside class="signals">
           <h3>À retenir</h3>
-
-          <ul class="signals-list">
-            ${signals.map(s => `
-              <li>${esc(s.signal)}</li>
-            `).join("")}
-          </ul>
-        </aside>
-      `;
+          <ul>${signals.map(s => `<li>${esc(s.signal)}</li>`).join('')}</ul>
+        </aside>`;
     }
 
     function renderCard(item) {
       const domain = hostname(item.url);
-
-      /*
-        Si plus tard l'API fournit item.image,
-        l'image OG apparaîtra automatiquement ici.
-      */
-      const preview = item.image
-        ? `
-          <div class="preview has-image">
-            <img
-              src="${esc(item.image)}"
-              alt=""
-              loading="lazy"
-              referrerpolicy="no-referrer"
-            />
-          </div>
-        `
-        : "";
+      const id = item.item_id || `${item.week}-${item.sort_order || Math.random()}`;
 
       return `
-        <article class="card">
-          ${preview}
+        <article class="card" data-item-id="${esc(id)}" data-url="${esc(item.url)}">
+          <div class="card-preview" aria-hidden="true">
+            <img alt="" loading="lazy" referrerpolicy="no-referrer">
+          </div>
 
           <div class="card-body">
-            <h4 class="card-title">
-              ${esc(item.title)}
-            </h4>
-
-            <div class="item-meta">
-              ${
-                item.item_date
-                  ? `<span>${esc(formatDate(item.item_date))}</span>`
-                  : ""
-              }
-
-              ${
-                item.source
-                  ? `<span>${esc(item.source)}</span>`
-                  : ""
-              }
-
-              ${
-                item.status
-                  ? `<span class="badge">${esc(item.status)}</span>`
-                  : ""
-              }
+            <div class="source-row">
+              <img class="source-logo" alt="" referrerpolicy="no-referrer">
+              <span class="source-name">${esc(item.source || domain)}</span>
             </div>
 
-            <p class="summary">
-              ${esc(item.summary)}
-            </p>
+            <h4>${esc(item.title)}</h4>
+
+            <div class="meta">
+              ${item.item_date ? `<span>${esc(formatDate(item.item_date, true))}</span>` : ''}
+              ${item.status ? `<span class="badge">${esc(item.status)}</span>` : ''}
+            </div>
+
+            <p class="summary">${esc(item.summary || '')}</p>
 
             <div class="card-actions">
-              <a
-                class="source-button"
-                href="${esc(item.url)}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Lire la source ↗
-              </a>
-
-              <button
-                class="copy-button"
-                type="button"
-                onclick='copyLink(${JSON.stringify(item.url)})'
-                aria-label="Copier le lien de cette ressource"
-              >
-                🔗 Copier
-              </button>
-
-              ${
-                domain
-                  ? `<span class="source-domain">${esc(domain)}</span>`
-                  : ""
-              }
+              <a class="source-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">Lire la source ↗</a>
+              <button class="copy-btn" type="button" onclick='copyText(${JSON.stringify(item.url)}, "Lien source copié")'>🔗 Copier</button>
+              ${domain ? `<span class="domain">${esc(domain)}</span>` : ''}
             </div>
           </div>
-        </article>
-      `;
+        </article>`;
     }
 
-    function renderSections(items) {
-      if (!items.length) {
-        return `
-          <div class="empty">
-            Aucun contenu dans cette rubrique pour cette semaine.
-          </div>
-        `;
+    function renderSections() {
+      const selected = filteredItems();
+      if (!selected.length) {
+        return `<div class="empty">Aucun contenu dans cette rubrique pour cette semaine.</div>`;
       }
 
       const grouped = {};
+      selected
+        .slice()
+        .sort((a,b) => Number(a.sort_order || 999) - Number(b.sort_order || 999))
+        .forEach(item => (grouped[item.section || 'Autres'] ??= []).push(item));
 
-      items.forEach(item => {
-        grouped[item.section] ??= [];
-        grouped[item.section].push(item);
-      });
-
-      return Object.entries(grouped)
-        .map(([section, rows]) => `
-          <section class="section">
-            <h3 class="section-heading">
-              <span aria-hidden="true">
-                ${SECTION_ICONS[section] || ""}
-              </span>
-              <span>
-                ${esc(section.replace(/^[^\p{L}\p{N}]+/u, ""))}
-              </span>
-            </h3>
-
-            <div class="cards">
-              ${rows.map(renderCard).join("")}
-            </div>
-          </section>
-        `)
-        .join("");
+      return Object.entries(grouped).map(([section, items]) => `
+        <section class="section">
+          <h3 class="section-title">${esc(section)}</h3>
+          <div class="cards">${items.map(renderCard).join('')}</div>
+        </section>
+      `).join('');
     }
 
-    function setSection(section) {
-      state.section = section;
-      render();
-
-      const filters = document.querySelector(".filters");
-      if (filters) {
-        filters.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+    function renderContentOnly() {
+      const filtersHost = document.getElementById('filtersHost');
+      const itemsHost = document.getElementById('itemsHost');
+      if (filtersHost) filtersHost.innerHTML = renderFilters();
+      if (itemsHost) {
+        itemsHost.innerHTML = renderSections();
+        initPreviewObserver();
       }
     }
 
     function render() {
-      const edition = selectedEdition();
-
-      if (!edition) {
-        root.className = "empty";
-        root.textContent = "Aucune édition disponible.";
+      if (!state.edition) {
+        app.className = 'empty';
+        app.innerHTML = 'Aucune édition publiée.';
         return;
       }
 
-      root.className = "";
-
-      root.innerHTML = `
-        ${renderWeekPicker()}
-        ${renderHero(edition)}
-        ${renderFilters()}
-        ${renderSignals(selectedSignals())}
-        ${renderSections(selectedItems())}
+      app.className = '';
+      app.innerHTML = `
+        ${renderArchiveBar()}
+        ${renderHero()}
+        <div id="filtersHost">${renderFilters()}</div>
+        ${renderSignals()}
+        <div id="itemsHost">${renderSections()}</div>
       `;
+
+      initPreviewObserver();
     }
 
-    async function load() {
+    /* Open Graph previews — progressive enhancement only */
+    const OG_CACHE_TTL = 1000 * 60 * 60 * 24 * 7;
+    const previewQueue = [];
+    let activePreviewRequests = 0;
+    const MAX_PREVIEW_REQUESTS = 3;
+
+    function cacheKey(url) { return 'obsia-og:' + url; }
+
+    function getCachedPreview(url) {
       try {
-        /*
-          Supporte :
-          - un endpoint qui renvoie directement { editions, items, signals }
-          - ou un endpoint enveloppé dans { data: { ... } }
-        */
-        const response = await fetch(API_URL, {
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+        const raw = localStorage.getItem(cacheKey(url));
+        if (!raw) return null;
+        const saved = JSON.parse(raw);
+        if (!saved?.time || Date.now() - saved.time > OG_CACHE_TTL) {
+          localStorage.removeItem(cacheKey(url));
+          return null;
         }
+        return saved.data || null;
+      } catch { return null; }
+    }
 
-        const payload = await response.json();
-        const data = payload.data || payload;
+    function setCachedPreview(url, data) {
+      try {
+        localStorage.setItem(cacheKey(url), JSON.stringify({ time: Date.now(), data }));
+      } catch {}
+    }
 
-        state.editions = (data.editions || [])
-          .slice()
-          .sort((a, b) =>
-            String(b.week).localeCompare(String(a.week))
-          );
+    async function fetchPreview(url) {
+      const cached = getCachedPreview(url);
+      if (cached) return cached;
 
-        state.items = data.items || [];
-        state.signals = data.signals || [];
+      const endpoint = 'https://api.microlink.io/?url=' + encodeURIComponent(url);
+      const response = await fetch(endpoint, { cache: 'force-cache' });
+      if (!response.ok) return null;
+      const json = await response.json();
+      const data = json?.data || null;
+      if (data) setCachedPreview(url, data);
+      return data;
+    }
 
-        const requestedWeek =
-          new URL(window.location.href)
-            .searchParams
-            .get("week");
+    function applyPreview(card, meta) {
+      if (!card || !meta) return;
 
-        const validRequestedWeek =
-          state.editions.some(e => e.week === requestedWeek);
+      const logo = meta.logo?.url || '';
+      const image = meta.image?.url || '';
+      const publisher = meta.publisher || '';
 
-        state.selectedWeek = validRequestedWeek
-          ? requestedWeek
-          : state.editions[0]?.week;
+      if (publisher) {
+        const sourceName = card.querySelector('.source-name');
+        if (sourceName && !sourceName.textContent.trim()) sourceName.textContent = publisher;
+      }
 
-        render();
-      } catch (error) {
-        console.error(error);
+      if (logo) {
+        const logoEl = card.querySelector('.source-logo');
+        if (logoEl) {
+          logoEl.onload = () => logoEl.classList.add('is-visible');
+          logoEl.onerror = () => logoEl.removeAttribute('src');
+          logoEl.src = logo;
+        }
+      }
 
-        root.className = "error";
-        root.innerHTML = `
-          <strong>Impossible de charger la veille.</strong><br>
-          Vérifie l’URL Apps Script et le déploiement du Web App.
-        `;
+      if (image) {
+        const wrap = card.querySelector('.card-preview');
+        const img = card.querySelector('.card-preview img');
+        if (wrap && img) {
+          img.onload = () => {
+            wrap.classList.add('is-visible');
+            img.classList.add('is-loaded');
+          };
+          img.onerror = () => {
+            wrap.classList.remove('is-visible');
+            img.removeAttribute('src');
+          };
+          img.src = image;
+        }
       }
     }
 
-    window.selectWeek = selectWeek;
-    window.previousWeek = previousWeek;
-    window.nextWeek = nextWeek;
-    window.setSection = setSection;
-    window.copyLink = copyLink;
+    function enqueuePreview(card) {
+      if (!card || card.dataset.previewQueued === '1') return;
+      card.dataset.previewQueued = '1';
+      previewQueue.push(card);
+      pumpPreviewQueue();
+    }
 
-    load();
+    function pumpPreviewQueue() {
+      while (activePreviewRequests < MAX_PREVIEW_REQUESTS && previewQueue.length) {
+        const card = previewQueue.shift();
+        const url = card?.dataset.url;
+        if (!url) continue;
+
+        activePreviewRequests++;
+        fetchPreview(url)
+          .then(meta => applyPreview(card, meta))
+          .catch(() => {})
+          .finally(() => {
+            activePreviewRequests--;
+            pumpPreviewQueue();
+          });
+      }
+    }
+
+    let previewObserver = null;
+
+    function initPreviewObserver() {
+      previewObserver?.disconnect();
+
+      const cards = [...document.querySelectorAll('.card[data-url]')];
+      if (!cards.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(enqueuePreview);
+        return;
+      }
+
+      previewObserver = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            previewObserver.unobserve(entry.target);
+            enqueuePreview(entry.target);
+          }
+        }
+      }, { rootMargin: '220px 0px' });
+
+      cards.forEach(card => previewObserver.observe(card));
+    }
+
+    document.addEventListener('click', event => {
+      const bar = document.querySelector('.archive-bar');
+      if (bar?.classList.contains('is-open') && !bar.contains(event.target)) {
+        closeArchives();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeArchives();
+    });
+
+    window.addEventListener('popstate', () => {
+      const w = new URLSearchParams(location.search).get('week') || '';
+      loadWeek(w);
+    });
+
+    window.chooseWeek = chooseWeek;
+    window.goOlder = goOlder;
+    window.goNewer = goNewer;
+    window.toggleArchives = toggleArchives;
+    window.closeArchives = closeArchives;
+    window.setSection = setSection;
+    window.copyText = copyText;
+    window.shareEditionUrl = shareEditionUrl;
+
+    loadWeek(requestedWeek).catch(err => {
+      app.className = 'error';
+      app.textContent = err.message;
+    });
   </script>
 </body>
 </html>
